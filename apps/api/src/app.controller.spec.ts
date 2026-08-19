@@ -19,4 +19,18 @@ describe('AppController', () => {
       expect(appController.getHello()).toBe('Hello World!');
     });
   });
+
+  describe('health', () => {
+    it('should return an ok status and service metadata', () => {
+      expect(appController.getHealth()).toEqual(
+        expect.objectContaining({
+          status: 'ok',
+          service: 'jobpilot-api',
+          environment: expect.any(String),
+          timestamp: expect.any(String),
+          uptime: expect.any(Number),
+        }),
+      );
+    });
+  });
 });
